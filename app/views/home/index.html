@@ -26,12 +26,24 @@ path {
 
 
 </style>
-<body>
 
+<body>
+<!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
+
+
+
+<!-- button to be added later, must figure out undefined data issue in update function -->
+<!-- <div id="button">
+    <input name="updateButton" 
+           type="button" 
+           value="Update" 
+           onclick="updateData()" 
+    />
+</div> -->
 
 <!-- <script src="jquery-1.11.2.min.js"></script>    -->
 <!-- load the d3.js library -->    
-<script src="https://d3js.org/d3.v3.min.js"></script>
+
 
 <script>
 
@@ -102,7 +114,7 @@ d3.csv("data.csv", function(error, data) {
     
 
 
-    // Add the X Axis
+    // add x Axis
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
@@ -116,7 +128,7 @@ d3.csv("data.csv", function(error, data) {
         .text("Date");
 
 
-    // Add the Y Axis
+    // add Y Axis
     svg.append("g")
         .attr("class", "y axis")
         .call(yAxis);
@@ -128,11 +140,52 @@ d3.csv("data.csv", function(error, data) {
         .attr("text-anchor", "middle")  
         .style("font-size", "20px") 
         .style("text-decoration", "underline")  
-        .text("D3 Graph");
+        .text("Value over Time with D3.js");
 
+
+    //                y axis label   -- illegal character error ?    
+    // svg.append("text")
+    //     .attr("transform", "rotate(-90)")
+    //     .attr("y", 0 – margin.left)
+    //     .attr("x",0 - (height / 2))
+    //     .attr("dy", "1em")
+    //     .style("text-anchor", "middle")
+    //     .text("Value");
 
 
 });
 
+
+// function updateData() {
+
+//     // get data 
+//     d3.csv("data-alt.csv", function(error, data) {
+//         data.forEach(function(d) {
+//             d.date = parseDate(d.date);
+//             d.close = +d.close;
+//         });
+
+//         // Scale the range of the data 
+//         x.domain(d3.extent(data, function(d) { return d.date; }));
+//             y.domain([0, d3.max(data, function(d) { return d.close; })]);
+
+//     // Select the line
+//     var svg = d3.select("body").transition();
+
+//     // Make the changes
+//         svg.select(".line")   // updateline
+//             .duration(750)
+//             .attr("d", valueline(data));
+//         svg.select(".x.axis") // update x axis
+//             .duration(750)
+//             .call(xAxis);
+//         svg.select(".y.axis") // update y axis
+//             .duration(750)
+//             .call(yAxis);
+
+    // });
+// }
 </script>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
 </body>
